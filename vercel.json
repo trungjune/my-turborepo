@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/frontend/note/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "apps/frontend/poll/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "apps/frontend/todo/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "apps/frontend/portfolio/package.json",
+      "use": "@vercel/static-build"
+    },
+    {
+      "src": "apps/backend/*/src/main.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/note/_next/(.*)",
+      "dest": "apps/frontend/note/_next/$1"
+    },
+    {
+      "src": "/poll/_next/(.*)",
+      "dest": "apps/frontend/poll/_next/$1"
+    },
+    {
+      "src": "/todo/_next/(.*)",
+      "dest": "apps/frontend/todo/_next/$1"
+    },
+    {
+      "src": "/api/auth(.*)",
+      "dest": "apps/backend/auth/src/main.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ]
+    },
+    {
+      "src": "/api/gateway(.*)",
+      "dest": "apps/backend/gateway/src/main.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ]
+    },
+    {
+      "src": "/api/note(.*)",
+      "dest": "apps/backend/note/src/main.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ]
+    },
+    {
+      "src": "/api/poll(.*)",
+      "dest": "apps/backend/poll/src/main.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ]
+    },
+    {
+      "src": "/api/todo(.*)",
+      "dest": "apps/backend/todo/src/main.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ]
+    },
+    {
+      "src": "/note(.*)",
+      "dest": "apps/frontend/note/$1"
+    },
+    {
+      "src": "/poll(.*)",
+      "dest": "apps/frontend/poll/$1"
+    },
+    {
+      "src": "/todo(.*)",
+      "dest": "apps/frontend/todo/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "apps/frontend/portfolio/$1"
+    }
+  ]
+}
